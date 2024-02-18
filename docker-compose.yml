@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  docker-mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=hackathon
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+    volumes:
+      - course-db:/var/lib/mysql
+volumes:
+  course-db:
+    driver: local

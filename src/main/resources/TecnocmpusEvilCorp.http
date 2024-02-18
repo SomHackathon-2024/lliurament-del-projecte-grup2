@@ -1,0 +1,24 @@
+
+
+
+### login
+POST http://localhost:8080/api/login
+content-type: application/json
+
+{
+  "username": "sasd",
+  "password": "password123"
+}
+
+@Auth = eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9URUFDSEVSIn1dLCJzdWIiOiJ0ZWFjaGVyIiwiaWF0IjoxNzAyNjc5NDk2LCJleHAiOjE3MDI3NjU4OTZ9.8F8OU3ulBLpw5fSOZkydFR4KQIHWWsCjFfNC9aAC-Dk
+
+### register
+POST http://localhost:8080/api/register
+content-type: application/json
+
+{
+  "username": "sasd",
+  "name": "user manolo",
+  "password": "password123",
+  "phone": "123456789"
+}

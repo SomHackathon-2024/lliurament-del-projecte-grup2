@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GroupProjecthackathonApplication<group-project-hackathon>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tecnocampus.groupprojecthackathon.GroupProjecthackathonApplication",
+            "projectName": "group-project-hackathon",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-hackathonApplication<somHackathon>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tecnocampus.hackathon.hackathonApplication",
+            "projectName": "somHackathon",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
