@@ -2,7 +2,6 @@ package com.tecnocampus.hackathon.api;
 
 import java.security.Principal;
 
-
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +9,6 @@ import com.tecnocampus.hackathon.application.ActivityService;
 import com.tecnocampus.hackathon.application.dto.PageDTO;
 import com.tecnocampus.hackathon.application.dto.custom.ActivityFrontDTO;
 import com.tecnocampus.hackathon.application.dto.ActivityDTO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -24,8 +21,13 @@ public class ActivityRestController {
         this.activityService = activityService;
     }
 
+    @PostMapping()
+    public ActivityDTO createActivity(@Validated @RequestBody ActivityDTO activityDTO) {
+        return activityService.create(activityDTO);
+    }
+
     @GetMapping()
-    public PageDTO<ActivityFrontDTO> getActivities(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public PageDTO<ActivityFrontDTO> getActivities(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, Principal principal) {
         return activityService.getMultiple(page, size);
     }
 
@@ -43,14 +45,13 @@ public class ActivityRestController {
     public PageDTO<ActivityFrontDTO> getRange(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam String start, @RequestParam String end) {
         return activityService.getBetween(page, size, start, end);
     }
-    
+
+
+
     @GetMapping("/{activityId}")
     public ActivityDTO getActivity(@PathVariable String activityId) {
         return activityService.get(activityId);
     }
 
-    @DeleteMapping("/{activityId}")
-    public void deleteById(@PathVariable String activityId, Principal principal) {
-        activityService.delete(activityId, principal.getName());
-    }
+
 }

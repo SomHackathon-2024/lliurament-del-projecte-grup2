@@ -1,7 +1,7 @@
 import time
 import requests
 
-url = "http://localhost:8080/api/courses/1"
+url = "http://localhost:8080/api/activity/1"
 
 for _ in range(60):
     requests.get(url)

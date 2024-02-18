@@ -1,17 +1,3 @@
-
-
-
-### login
-POST http://localhost:8080/api/login
-content-type: application/json
-
-{
-  "username": "sasd",
-  "password": "password123"
-}
-
-@Auth = eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9URUFDSEVSIn1dLCJzdWIiOiJ0ZWFjaGVyIiwiaWF0IjoxNzAyNjc5NDk2LCJleHAiOjE3MDI3NjU4OTZ9.8F8OU3ulBLpw5fSOZkydFR4KQIHWWsCjFfNC9aAC-Dk
-
 ### register
 POST http://localhost:8080/api/register
 content-type: application/json
@@ -22,3 +8,38 @@ content-type: application/json
   "password": "password123",
   "phone": "123456789"
 }
+
+
+### login
+POST http://localhost:8080/api/login
+content-type: application/json
+
+{
+  "username": "user",
+  "password": "password123"
+}
+
+@Auth = eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
+
+### get recent activities
+GET http://localhost:8080/api/activity
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
+
+### create activity
+POST http://localhost:8080/api/activity
+content-type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
+
+{
+  "title": "activity 1",
+  "description": "activity 1 description",
+  "bodyContent": "activity 1 body content",
+  "date": "2024-02-17 12:00:23",
+  "longitude": 123.123,
+  "latitude": 123.123
+}
+
+
+### get upcoming activities
+GET http://localhost:8080/api/activity/past
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8

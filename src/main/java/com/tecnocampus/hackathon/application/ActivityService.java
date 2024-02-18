@@ -44,7 +44,6 @@ public class ActivityService {
         activity.setDesc(activityDTO.getDescription());
         activity.setDate(activityDTO.getDate());
 
-        activity.setPrice(activityDTO.getPrice());
         activity.setMaxAttendees(activityDTO.getMaxAttendees());
     
         activity.setLongitude(activityDTO.getLongitude());

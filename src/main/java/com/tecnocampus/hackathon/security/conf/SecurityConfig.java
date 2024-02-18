@@ -72,11 +72,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req 
                             .requestMatchers(WHITELIST_URL).permitAll()
+                            .anyRequest().authenticated()
+                            // .requestMatchers(POST, "/api/activity/**").hasRole("USER")
+                            // .requestMatchers(GET, "/api/activity/**").hasRole("USER")
 
-                            .requestMatchers(POST, "/api/activity/**").hasRole("USER")
-
-                            .anyRequest()
-                            .authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
