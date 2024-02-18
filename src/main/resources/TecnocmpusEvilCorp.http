@@ -25,6 +25,11 @@ content-type: application/json
 GET http://localhost:8080/api/activity
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
 
+### get spcific activity
+GET http://localhost:8080/api/activity/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
+
+
 ### create activity
 POST http://localhost:8080/api/activity
 content-type: application/json 
@@ -43,3 +48,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hb
 ### get upcoming activities
 GET http://localhost:8080/api/activity/past
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
+
+
+### get upcoming activities
+POST http://localhost:8080/api/activity/1/attend
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
+

@@ -5,22 +5,34 @@ import java.time.LocalDateTime;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.tecnocampus.hackathon.application.dto.ActivityDTO;
 import com.tecnocampus.hackathon.application.dto.PageDTO;
+import com.tecnocampus.hackathon.application.dto.ReservationDTO;
 import com.tecnocampus.hackathon.application.dto.custom.ActivityFrontDTO;
 import com.tecnocampus.hackathon.domain.Activity;
+import com.tecnocampus.hackathon.domain.Reservation;
+import com.tecnocampus.hackathon.domain.User;
 import com.tecnocampus.hackathon.exception.notfound.EntityNotFound;
 import com.tecnocampus.hackathon.persistence.ActivityRepository;
+import com.tecnocampus.hackathon.persistence.ReservationRepository;
+import com.tecnocampus.hackathon.persistence.UserRepository;
 
 @Service
 public class ActivityService {
     private ActivityRepository activityRepository;
+    private UserRepository userRepository;
+    private ReservationRepository reservationRepository;
+
+
     private ModelMapper modelMapper;
 
-    public ActivityService(ActivityRepository activityRepository, ModelMapper modelMapper) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, ReservationRepository reservationRepository, ModelMapper modelMapper) {
         this.activityRepository = activityRepository;
+        this.userRepository = userRepository;
+        this.reservationRepository = reservationRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -81,6 +93,23 @@ public class ActivityService {
 
         return new PageDTO<ActivityFrontDTO>(activityRepository.findByDateBetween(startDate, endDate, pageable)
             .map(activity -> modelMapper.map(activity, ActivityFrontDTO.class)));
+    }
+
+
+    public ReservationDTO attend(String activityId, String username) {
+        User user = userRepository.findByUsername(username)
+            .orElseThrow( () -> new EntityNotFound(User.class, username) );
+
+        Activity activity = activityRepository.findById(activityId)
+            .orElseThrow( () -> new EntityNotFound(Activity.class, activityId) );
+
+        Reservation reservation = new Reservation();
+        reservation.setUser(user);
+        reservation.setActivity(activity);
+        
+        reservationRepository.save(reservation);
+
+        return modelMapper.map(reservation, ReservationDTO.class);
     }
 
     // get most popular

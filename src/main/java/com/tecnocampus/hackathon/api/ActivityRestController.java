@@ -2,13 +2,16 @@ package com.tecnocampus.hackathon.api;
 
 import java.security.Principal;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.tecnocampus.hackathon.application.ActivityService;
 import com.tecnocampus.hackathon.application.dto.PageDTO;
+import com.tecnocampus.hackathon.application.dto.ReservationDTO;
 import com.tecnocampus.hackathon.application.dto.custom.ActivityFrontDTO;
 import com.tecnocampus.hackathon.application.dto.ActivityDTO;
+
 
 
 @RestController
@@ -46,7 +49,11 @@ public class ActivityRestController {
         return activityService.getBetween(page, size, start, end);
     }
 
-
+    @PostMapping("/{activityId}/attend")
+    public ReservationDTO postMethodName(@PathVariable String activityId, Principal principal) {
+        return activityService.attend(activityId, principal.getName());
+    }
+    
 
     @GetMapping("/{activityId}")
     public ActivityDTO getActivity(@PathVariable String activityId) {
