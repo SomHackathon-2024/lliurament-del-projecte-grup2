@@ -27,7 +27,7 @@ public class ReviewDTO {
     @NotNull(message = "Satisfaction degree cannot be empty", groups = {ICreateReview.class})
     @Min(value = 1, message = "Satisfaction degree must be greater than 0", groups = {ICreateReview.class})
     @Max(value = 5, message = "Satisfaction degree must be less than 6", groups = {ICreateReview.class})
-    private int satisfactionDegree;
+    private int rating;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private String creationDate;

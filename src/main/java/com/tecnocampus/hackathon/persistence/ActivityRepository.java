@@ -1,6 +1,5 @@
 package com.tecnocampus.hackathon.persistence;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.data.domain.Page;

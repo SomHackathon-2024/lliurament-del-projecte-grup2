@@ -11,13 +11,16 @@ import org.springframework.stereotype.Service;
 import com.tecnocampus.hackathon.application.dto.ActivityDTO;
 import com.tecnocampus.hackathon.application.dto.PageDTO;
 import com.tecnocampus.hackathon.application.dto.ReservationDTO;
+import com.tecnocampus.hackathon.application.dto.ReviewDTO;
 import com.tecnocampus.hackathon.application.dto.custom.ActivityFrontDTO;
 import com.tecnocampus.hackathon.domain.Activity;
 import com.tecnocampus.hackathon.domain.Reservation;
+import com.tecnocampus.hackathon.domain.Review;
 import com.tecnocampus.hackathon.domain.User;
 import com.tecnocampus.hackathon.exception.notfound.EntityNotFound;
 import com.tecnocampus.hackathon.persistence.ActivityRepository;
 import com.tecnocampus.hackathon.persistence.ReservationRepository;
+import com.tecnocampus.hackathon.persistence.ReviewRepository;
 import com.tecnocampus.hackathon.persistence.UserRepository;
 
 @Service
@@ -25,14 +28,15 @@ public class ActivityService {
     private ActivityRepository activityRepository;
     private UserRepository userRepository;
     private ReservationRepository reservationRepository;
-
+    private ReviewRepository reviewRepository;
 
     private ModelMapper modelMapper;
 
-    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, ReservationRepository reservationRepository, ModelMapper modelMapper) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, ReservationRepository reservationRepository, ReviewRepository reviewRepository, ModelMapper modelMapper) {
         this.activityRepository = activityRepository;
         this.userRepository = userRepository;
         this.reservationRepository = reservationRepository;
+        this.reviewRepository = reviewRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -95,7 +99,6 @@ public class ActivityService {
             .map(activity -> modelMapper.map(activity, ActivityFrontDTO.class)));
     }
 
-
     public ReservationDTO attend(String activityId, String username) {
         User user = userRepository.findByUsername(username)
             .orElseThrow( () -> new EntityNotFound(User.class, username) );
@@ -112,5 +115,39 @@ public class ActivityService {
         return modelMapper.map(reservation, ReservationDTO.class);
     }
 
-    // get most popular
+    public ResponseEntity<Void> cancelAttendance(String activityId, String username) {
+        Reservation reservation = reservationRepository.findByUserUsernameAndActivityId(username, activityId)
+            .orElseThrow( () -> new EntityNotFound(Reservation.class, username+"+"+activityId) );
+
+        reservationRepository.deleteById(reservation.getId());
+
+        return ResponseEntity.noContent().build();
+    }
+
+    public PageDTO<ReviewDTO> getReviews(String activityId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        return new PageDTO<ReviewDTO>(reviewRepository.findAllByActivityId(activityId, pageable)
+            .map(reservation -> modelMapper.map(reservation, ReviewDTO.class)));
+    }
+
+    public ReviewDTO createReview(String activityId, ReviewDTO reviewDTO, String username) {
+        User user = userRepository.findByUsername(username)
+            .orElseThrow( () -> new EntityNotFound(User.class, username) );
+
+        Activity activity = activityRepository.findById(activityId)
+            .orElseThrow( () -> new EntityNotFound(Activity.class, activityId) );
+
+        Review review = new Review();
+        review.setUser(user);
+        review.setActivity(activity);
+
+        review.setRating(reviewDTO.getRating());
+        review.setTitle(reviewDTO.getTitle());
+        review.setContents(reviewDTO.getContents());
+
+        reviewRepository.save(review);
+
+        return modelMapper.map(review, ReviewDTO.class);
+    }
 }
