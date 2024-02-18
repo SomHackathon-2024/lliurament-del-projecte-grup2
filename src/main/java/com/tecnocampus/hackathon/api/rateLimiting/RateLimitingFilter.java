@@ -20,15 +20,15 @@ public class RateLimitingFilter implements Filter {
             throws IOException, ServletException {
         String userId = extractUserId(request);
 
-        // if (!rateLimiterService.tryAcquire(userId)) {
-        //     HttpServletResponse httpResponse = (HttpServletResponse) response;
+        if (!rateLimiterService.tryAcquire(userId)) {
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        //     httpResponse.setStatus(429);
-        //     httpResponse.setContentType("application/json");
-        //     httpResponse.setCharacterEncoding("UTF-8");
-        //     httpResponse.getWriter().write("{\"message\": \"Please wait before making another request\"}");
-        //     return;
-        // }
+            httpResponse.setStatus(429);
+            httpResponse.setContentType("application/json");
+            httpResponse.setCharacterEncoding("UTF-8");
+            httpResponse.getWriter().write("{\"message\": \"Please wait before making another request\"}");
+            return;
+        }
 
         chain.doFilter(request, response);
     }
