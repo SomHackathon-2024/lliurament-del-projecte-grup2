@@ -1,0 +1,13 @@
+jwt auth
+login/register
+rate limiting
+upload files
+docker
+
+future
+    reddis per caching
+    seperar APIs
+        public_api (open database)
+        private_api (frontend)
+    route engine
+    

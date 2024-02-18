@@ -23,4 +23,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
     public Page<Reservation> findUpcomingReservationsByUsername(@Param("username") String username, Pageable pageable);
 
     public List<Reservation> findAllByUserUsername(String username);
+
+    public Long countByActivityId(String activityId);
 }

@@ -19,8 +19,6 @@ content-type: application/json
   "password": "password123"
 }
 
-@Auth = eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
-
 ### get recent activities
 GET http://localhost:8080/api/activity
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
@@ -28,7 +26,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hb
 ### get spcific activity
 GET http://localhost:8080/api/activity/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
-
 
 ### create activity
 POST http://localhost:8080/api/activity
@@ -57,11 +54,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hb
 DELETE http://localhost:8080/api/activity/1/attend
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
 
-### get reservations
+### get own reservations
 GET http://localhost:8080/api/activity/reservations
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
 
-
+### get reviews
+GET http://localhost:8080/api/activity/1/reviews
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8
 
 ### add review
 POST http://localhost:8080/api/activity/1/reviews
@@ -73,7 +72,3 @@ content-type: application/json
   "title": "Was Great!",
   "contents": "I had a great time!"
 }
-
-### get reviews
-GET http://localhost:8080/api/activity/1/reviews
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sInN1YiI6InVzZXIiLCJpYXQiOjE3MDgyMzYyNzcsImV4cCI6MTcwODMyMjY3N30.ORrlwdBFSi-_WymBjD7wNgtZ3B7gDt4NgIP_KoS66S8

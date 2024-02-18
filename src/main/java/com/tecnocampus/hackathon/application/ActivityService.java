@@ -106,6 +106,9 @@ public class ActivityService {
         Activity activity = activityRepository.findById(activityId)
             .orElseThrow( () -> new EntityNotFound(Activity.class, activityId) );
 
+        if(reservationRepository.countByActivityId(activityId) >= activity.getMaxAttendees())
+            throw new IllegalStateException("Activity is full");
+
         Reservation reservation = new Reservation();
         reservation.setUser(user);
         reservation.setActivity(activity);
